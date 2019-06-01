@@ -66,10 +66,8 @@ export default {
   created() {
     const leftCatPos = Math.floor((Math.random() * catList.length) + 1);
     let rightCatPos = Math.floor((Math.random() * catList.length) + 1);
-    if (catList.length > 1) {
-      while (leftCatPos === rightCatPos) {
-        rightCatPos = Math.floor((Math.random() * catList.length) + 1);
-      }
+    if (leftCatPos === rightCatPos) {
+      rightCatPos = (rightCatPos + 1) % catList.length;
     }
     const docRef = db.collection('cats').doc(catList[leftCatPos].id);
     docRef.get().then((doc) => {
