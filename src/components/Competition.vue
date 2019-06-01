@@ -9,6 +9,9 @@
         <Cat :cat='rightCat' :action='(cat) => chooseOne(cat)'/>
       </div>
     </div>
+    <div class='row'>
+      <button v-on:click='() => {seeScores()}'>See Scores</button>
+    </div>
   </div>
 </template>
 
@@ -16,7 +19,6 @@
 import Cat from '@/components/Cat';
 import db from './../firebase';
 import catList from './../assets/cats';
-import router from './../router';
 
 export default {
   name: 'Competition',
@@ -33,7 +35,10 @@ export default {
   methods: {
     chooseOne(cat) {
       db.collection('cats').doc(cat.id).update({ score: cat.info.score + 1, nbVotes: cat.info.nbVotes + 1 });
-      router.replace('scores');
+      this.$router.push('scores');
+    },
+    seeScores() {
+      this.$router.push('scores');
     },
   },
   destroyed() {
