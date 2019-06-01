@@ -28,13 +28,29 @@ export default {
   data() {
     return {
       msg: 'Choose your favorite cat',
-      leftCat: { id: '', info: { url: 'https://media.giphy.com/media/kodQslB005JIc/giphy.gif', score: 0, nbVotes: 0 } },
-      rightCat: { id: '', info: { url: 'https://media.giphy.com/media/kodQslB005JIc/giphy.gif', score: 0, nbVotes: 0 } },
+      leftCat: { id: '', info: { url: 'https://media.giphy.com/media/kodQslB005JIc/giphy.gif', score: 0, shown: 0, chosen: 0 } },
+      rightCat: { id: '', info: { url: 'https://media.giphy.com/media/kodQslB005JIc/giphy.gif', score: 0, shown: 0, chosen: 0 } },
     };
   },
   methods: {
     chooseOne(cat) {
-      db.collection('cats').doc(cat.id).update({ score: cat.info.score + 1, nbVotes: cat.info.nbVotes + 1 });
+      let newScoreWinner;
+      let newScoreLoser;
+      if (cat.id === this.leftCat.id) {
+        newScoreWinner = (this.leftCat.info.chosen + 1) / (this.leftCat.info.shown + 1);
+        newScoreWinner *= 100;
+        newScoreLoser = (this.rightCat.info.chosen) / (this.rightCat.info.shown + 1);
+        newScoreLoser *= 100;
+        db.collection('cats').doc(this.leftCat.id).update({ score: newScoreWinner, chosen: this.leftCat.info.chosen + 1 });
+        db.collection('cats').doc(this.rightCat.id).update({ score: newScoreLoser, chosen: this.rightCat.info.chosen });
+      } else {
+        newScoreWinner = (this.rightCat.info.chosen + 1) / (this.rightCat.info.shown + 1);
+        newScoreWinner *= 100;
+        newScoreLoser = (this.leftCat.info.chosen) / (this.leftCat.info.shown + 1);
+        newScoreLoser *= 100;
+        db.collection('cats').doc(this.rightCat.id).update({ score: newScoreWinner, chosen: this.rightCat.info.chosen + 1 });
+        db.collection('cats').doc(this.leftCat.id).update({ score: newScoreLoser, chosen: this.leftCat.info.chosen });
+      }
       this.$router.push('scores');
     },
     seeScores() {
@@ -42,7 +58,8 @@ export default {
     },
   },
   destroyed() {
-
+    db.collection('cats').doc(this.leftCat.id).update({ shown: this.leftCat.info.shown + 1 });
+    db.collection('cats').doc(this.rightCat.id).update({ shown: this.rightCat.info.shown + 1 });
   },
   created() {
     const leftCatPos = Math.floor((Math.random() * catList.length) + 1);
@@ -59,12 +76,13 @@ export default {
       } else {
         this.leftCat = {
           id: catList[leftCatPos].id,
-          info: { url: catList[leftCatPos].url, score: 0, nbVotes: 0 },
+          info: { url: catList[leftCatPos].url, score: 0, shown: 0, chosen: 0 },
         };
         db.collection('cats').doc(catList[leftCatPos].id).set({
           url: catList[leftCatPos].url,
           score: 0,
-          nbVotes: 0,
+          shown: 0,
+          chosen: 0,
         });
       }
     });
@@ -75,12 +93,13 @@ export default {
       } else {
         this.rightCat = {
           id: catList[rightCatPos].id,
-          info: { url: catList[rightCatPos].url, score: 0, nbVotes: 0 },
+          info: { url: catList[rightCatPos].url, score: 0, shown: 0, chosen: 0 },
         };
         db.collection('cats').doc(catList[rightCatPos].id).set({
           url: catList[rightCatPos].url,
           score: 0,
-          nbVotes: 0,
+          shown: 0,
+          chosen: 0,
         });
       }
     });

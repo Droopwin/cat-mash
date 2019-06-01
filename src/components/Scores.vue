@@ -6,7 +6,6 @@
         <div class='row' v-for='cat in cats' :key='cat.id'>
           <Cat :cat='cat' :action='() => {}'/>
           Score : {{cat.info.score}}
-          Selected : {{cat.info.nbVotes}}
         </div>
       </ul>
   </div>
