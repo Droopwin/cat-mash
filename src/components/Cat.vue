@@ -10,13 +10,13 @@ export default {
   name: 'Cat',
   props: {
     cat: Object,
-    action: Function
+    action: Function,
   },
-  data () {
+  data() {
     return {
-    }
-  }
-}
+    };
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

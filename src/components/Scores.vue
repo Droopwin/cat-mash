@@ -1,22 +1,44 @@
-<template>
-  <div class="hello">
+<template id='Comparison'>
+  <div class='Comparison'>
     <h1>{{ msg }}</h1>
-    
+      <ul v-if='cats.length'>
+        <div class='row' v-for='cat in cats' :key='cat.id'>
+          <Cat :cat='cat' :action='() => {}'/>
+          Score : {{cat.info.score}}
+          Selected : {{cat.info.nbVotes}}
+        </div>
+      </ul>
   </div>
 </template>
 
 <script>
+import Cat from '@/components/Cat';
+import db from './../firebase';
+
 export default {
-  name: 'Scores',
+  name: 'Comparison',
+  components: {
+    Cat,
+  },
   data() {
     return {
-      msg: 'Welcome to Scores Page',
+      msg: 'List of cats',
+      cats: [],
     };
+  },
+  created() {
+    db.collection('cats').orderBy('score', 'desc').get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        this.cats.push({ id: doc.id, info: doc.data() });
+      });
+    });
+  },
+  destroyed() {
+
   },
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1, h2 {
   font-weight: normal;
