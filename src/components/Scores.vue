@@ -8,6 +8,8 @@
           Selected : {{cat.info.nbVotes}}
         </div>
       </ul>
+      <button v-on:click='() => {voteAgain()}'>Vote again</button>
+
   </div>
 </template>
 
@@ -25,6 +27,11 @@ export default {
       msg: 'List of cats',
       cats: [],
     };
+  },
+  methods: {
+    voteAgain() {
+      this.$router.push('/');
+    },
   },
   created() {
     db.collection('cats').orderBy('score', 'desc').get().then((querySnapshot) => {
