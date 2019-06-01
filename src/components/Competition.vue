@@ -2,15 +2,15 @@
   <div>
     <h1>{{ msg }}</h1>
     <div class='row'>
+      <button v-on:click='() => {seeScores()}'>See Scores</button>
+    </div>
+    <div class='row'>
       <div class='column'>
         <Cat :cat='leftCat' :action='(cat) => chooseOne(cat)'/>
       </div>
       <div class='column'>
         <Cat :cat='rightCat' :action='(cat) => chooseOne(cat)'/>
       </div>
-    </div>
-    <div class='row'>
-      <button v-on:click='() => {seeScores()}'>See Scores</button>
     </div>
   </div>
 </template>

@@ -1,6 +1,7 @@
 <template id='Comparison'>
   <div class='Comparison'>
     <h1>{{ msg }}</h1>
+      <button v-on:click='() => {voteAgain()}'>Vote again</button>
       <ul v-if='cats.length'>
         <div class='row' v-for='cat in cats' :key='cat.id'>
           <Cat :cat='cat' :action='() => {}'/>
@@ -8,8 +9,6 @@
           Selected : {{cat.info.nbVotes}}
         </div>
       </ul>
-      <button v-on:click='() => {voteAgain()}'>Vote again</button>
-
   </div>
 </template>
 
@@ -24,7 +23,7 @@ export default {
   },
   data() {
     return {
-      msg: 'List of cats',
+      msg: 'Cat\'s score',
       cats: [],
     };
   },
