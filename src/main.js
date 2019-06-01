@@ -5,6 +5,8 @@ import App from './App';
 import router from './router';
 import './firebase';
 
+require('dotenv').config();
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
