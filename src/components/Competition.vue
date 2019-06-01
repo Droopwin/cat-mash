@@ -140,4 +140,13 @@ a {
   display: table;
   clear: both;
 }
+
+button {
+  background-color: #4CAF50;
+  border-radius: 8px;
+  padding: 14px 40px;
+  font-size: 25px;
+  color: white;
+  border: none;
+}
 </style>
