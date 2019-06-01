@@ -16,6 +16,7 @@
 import Cat from '@/components/Cat';
 import db from './../firebase';
 import catList from './../assets/cats';
+import router from './../router';
 
 export default {
   name: 'Competition',
@@ -32,7 +33,11 @@ export default {
   methods: {
     chooseOne(cat) {
       db.collection('cats').doc(cat.id).update({ score: cat.info.score + 1, nbVotes: cat.info.nbVotes + 1 });
+      router.replace('scores');
     },
+  },
+  destroyed() {
+
   },
   created() {
     const leftCatPos = Math.floor((Math.random() * catList.length) + 1);
