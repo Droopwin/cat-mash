@@ -35,4 +35,9 @@ li {
 a {
   color: #42b983;
 }
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
 </style>

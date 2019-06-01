@@ -54,6 +54,8 @@ export default {
       this.$router.push('scores');
     },
     seeScores() {
+      db.collection('cats').doc(this.rightCat.id).update({ score: 100 * ((this.rightCat.info.chosen) / (this.rightCat.info.shown + 1)) });
+      db.collection('cats').doc(this.leftCat.id).update({ score: 100 * ((this.leftCat.info.chosen) / (this.leftCat.info.shown + 1)) });
       this.$router.push('scores');
     },
   },

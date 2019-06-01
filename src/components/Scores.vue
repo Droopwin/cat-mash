@@ -5,7 +5,10 @@
       <ul v-if='cats.length'>
         <div class='row' v-for='cat in cats' :key='cat.id'>
           <Cat :cat='cat' :action='() => {}'/>
-          Score : {{cat.info.score}}
+          Cuteness : {{cat.info.score}} %
+          <div id='progressbar'>
+            <progress :value='cat.info.score' min='0' max='100'></progress>
+          </div>
         </div>
       </ul>
   </div>
@@ -59,4 +62,11 @@ li {
 a {
   color: #42b983;
 }
+
+
+progress[value] {
+  width: 50%;
+  height: 40px;
+}
+
 </style>
