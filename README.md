@@ -1,6 +1,25 @@
 # cat-mash
 
-> A Vue.js project
+> A Vue.js project for l'Atelier
+
+The goal of this project is to build a web app alowing to find the cutest cat. 
+
+The web app is available via [this link](https://cat-mash-david.firebaseapp.com)
+
+
+
+## Two pages are available : 
+
++ **Home page** where you chose the cutest cat according to you ( two random cats are selected for you to pick )
++ **Score page** where you can see the level of cuteness of all the cats on the database.
+
+## Data Storage and hosting :
+The data containing scores and url to pictures is stored on a firebase store.
+
+The web app is also hosted on [firebase](https://console.firebase.google.com/): 
+
+
+---
 
 ## Build Setup
 
@@ -14,14 +33,7 @@ npm run dev
 # build for production with minification
 npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
+# deploy on firebase
+firebase deploy
+#make sure you install and initiate firebase before
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
