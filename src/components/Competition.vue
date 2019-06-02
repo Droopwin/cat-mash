@@ -41,6 +41,8 @@ export default {
         newScoreWinner *= 100;
         newScoreLoser = (this.rightCat.info.chosen) / (this.rightCat.info.shown + 1);
         newScoreLoser *= 100;
+        newScoreWinner = Math.round(newScoreWinner * 100) / 100;
+        newScoreLoser = Math.round(newScoreLoser * 100) / 100;
         db.collection('cats').doc(this.leftCat.id).update({ score: newScoreWinner, chosen: this.leftCat.info.chosen + 1 });
         db.collection('cats').doc(this.rightCat.id).update({ score: newScoreLoser, chosen: this.rightCat.info.chosen });
       } else {
@@ -48,6 +50,8 @@ export default {
         newScoreWinner *= 100;
         newScoreLoser = (this.leftCat.info.chosen) / (this.leftCat.info.shown + 1);
         newScoreLoser *= 100;
+        newScoreWinner = Math.round(newScoreWinner * 100) / 100;
+        newScoreLoser = Math.round(newScoreLoser * 100) / 100;
         db.collection('cats').doc(this.rightCat.id).update({ score: newScoreWinner, chosen: this.rightCat.info.chosen + 1 });
         db.collection('cats').doc(this.leftCat.id).update({ score: newScoreLoser, chosen: this.leftCat.info.chosen });
       }
