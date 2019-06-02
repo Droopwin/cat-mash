@@ -10,6 +10,7 @@
           </div>
         </div>
       </ul>
+      <br><br><br>
       <div class='bottom_bar'>
         <button v-on:click='() => {voteAgain()}'>Vote again</button>
       </div>

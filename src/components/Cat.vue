@@ -38,6 +38,6 @@ a {
 
 img {
     max-width: 100%;
-    max-height: 100%;
+    height: 200px;
 }
 </style>

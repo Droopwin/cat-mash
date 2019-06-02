@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase';
 
 const app = initializeApp({
-  apiKey: process.env.SECRET_KEY,
+  apiKey: process.env.apikey,
   authDomain: 'cat-mash-david.firebaseapp.com',
   databaseURL: 'https://cat-mash-david.firebaseio.com',
   projectId: 'cat-mash-david',
